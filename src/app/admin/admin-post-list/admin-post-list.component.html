@@ -1,0 +1,32 @@
+
+  <div class='fluid-container'>
+    <div class='row'>
+      <div class='col-6'>
+  <span>What's New</span>
+  </div>
+  <div class='col-6'>
+  <a class='new-post' routerLink="/admin-new-post">New Post</a>
+    </div>
+  </div>
+  </div>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-12'>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div multi='true' *ngIf="posts.length > 0 && !isLoading">
+<div class='post-list-card' *ngFor="let post of posts">
+<h1> {{ post.title }}</h1>
+<h2> {{ post.subtitle }}</h2>
+<h3> {{ post.summary }}</h3>
+<p>  {{ post.content }}</p>
+  <a class='btn btn-secondary' [routerLink]="['/edit', post.id]">EDIT</a>
+  <button class='btn btn-warn' (click)="onDelete(post.id)">X</button>
+  <hr>
+  </div>
+  </div>
+
+<p *ngIf="bloggingService.posts.length <= 0 && !isLoading">No posts yet!</p>
+</div>
+</div>
+</div>

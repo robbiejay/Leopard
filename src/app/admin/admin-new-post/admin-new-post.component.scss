@@ -1,0 +1,60 @@
+.fluid-container {
+  background-color: #1e2261;
+  padding: 4px;
+}
+
+.fluid-container span {
+    font-family: 'News Cycle', sans-serif;
+    font-size: 1.333em;
+    color: #FFF;
+    margin-left: 10%;
+    position: relative;
+    top: 4px;
+
+}
+
+.fluid-container .go-back {
+  border: 1px solid #fff;
+  margin-right: 10%;
+  padding: 7px 14px;
+  color: #fff;
+  font-size: 1em;
+    font-family: 'News Cycle', sans-serif;
+    cursor: pointer;
+}
+
+.fluid-container .go-back:hover {
+  background-color: #fff;
+  color: #1e2261;
+}
+
+form {
+  font-family: 'News Cycle', sans-serif;
+}
+label {
+  margin-bottom: 7px;
+  margin-top: 14px;
+  border-bottom: 1px solid #5b5f9b;
+  width: 100%;
+  padding-bottom: 14px;
+}
+
+a {
+
+
+  float: right;
+  border-radius: 7px;
+}
+
+.new-post-area {
+  padding: 28px;
+    background-color: #f8fcea;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type='file'] {
+  visibility: hidden;
+}

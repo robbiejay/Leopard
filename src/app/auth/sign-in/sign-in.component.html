@@ -1,0 +1,19 @@
+<ngx-smart-modal #loginPopup [identifier]="'loginPopup'">
+<div class='container'>
+  <br><br>
+  <h5>Sign in to the Leopard Wealth staff portal</h5>
+  <br><br>
+<form (ngSubmit)='onSignin(f)' #f='ngForm'>
+<div class='form-group'>
+  <label for='email'>Mail</label>
+  <input type='email' id='email' name='email' ngModel class='form-control'>
+</div>
+<div class='form-group'>
+    <label for='password'>Password</label>
+    <input type='password' id='password' name='password' ngModel class='form-control'>
+</div>
+<br>
+<button class='btn btn-primary' type='submit'>Sign In</button><a routerLink="/staff" style='margin-left:14px;font-size:0.7em;color:#999;'>Or go to staff page...</a>
+</form>
+</div>
+</ngx-smart-modal>
