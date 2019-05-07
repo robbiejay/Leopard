@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BlogService } from '../../_services/blog.service';
 import { Post } from '../../_models/post.model';
@@ -13,6 +13,9 @@ import { Post } from '../../_models/post.model';
 export class AdminNewPostComponent implements OnInit {
   post: Post;
   isLoading = false;
+
+  form: FormGroup;
+
   private mode = 'create';
   private postId: string;
 
@@ -22,6 +25,31 @@ export class AdminNewPostComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+
+    this.form = new FormGroup({
+      'title': new FormControl(null, {
+        validators: [
+          Validators.required,
+          Validators.minLength(3)
+        ]
+      }),
+      'subtitle': new FormControl(null, {
+        validators: [
+          Validators.required
+        ]
+      }),
+      'content': new FormControl(null, {
+        validators: [
+          Validators.required
+        ]
+      }),
+      'summary': new FormControl(null, {
+        validators: [
+          Validators.required
+        ]
+      }),
+    });
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
@@ -36,7 +64,13 @@ export class AdminNewPostComponent implements OnInit {
             subtitle: postData.subtitle,
             content: postData.content,
             summary: postData.summary
-          }
+          };
+          this.form.setValue({
+            'title': this.post.title,
+            'subtitle': this.post.subtitle,
+            'content': this.post.content,
+            'summary': this.post.summary
+          });
         });
 
       } else {
@@ -46,30 +80,28 @@ export class AdminNewPostComponent implements OnInit {
     });
   }
 
-  onPostUpload(form: NgForm) {
+  onPostUpload() {
     this.isLoading = true;
     if(this.mode === 'create') {
       this.bloggingService.addPost(
 
-        form.value.title,
-        form.value.subtitle,
-        form.value.content,
-        form.value.summary
+        this.form.value.title,
+        this.form.value.subtitle,
+        this.form.value.content,
+        this.form.value.summary
 
       );
     } else {
       this.bloggingService.updatePost(
         this.postId,
-        form.value.title,
-        form.value.subtitle,
-        form.value.content,
-        form.value.summary
+        this.form.value.title,
+        this.form.value.subtitle,
+        this.form.value.content,
+        this.form.value.summary
 
       );
     }
-
-
-  form.resetForm();
+  this.form.reset();
     }
 
   //  this.bloggingService.onPostAdded(post);

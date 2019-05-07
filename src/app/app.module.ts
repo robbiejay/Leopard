@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
 
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
@@ -56,6 +57,7 @@ import { StaffContactComponent } from './staff/staff-contact/staff-contact.compo
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,

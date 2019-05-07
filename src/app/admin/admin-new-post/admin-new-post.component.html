@@ -15,7 +15,7 @@
 
     <div class='col-12'>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
-<form (ngSubmit)='onPostUpload(f)' #f='ngForm' *ngIf="!isLoading">
+<form [formGroup]="form" (ngSubmit)='onPostUpload(f)' *ngIf="!isLoading">
   <div class='row'>
   <div class='col-8'>
 <div class='form-group'>
@@ -24,9 +24,9 @@
   type='text'
   id='title'
   name='title'
-  [ngModel] = 'post?.title'
-  #title="ngModel"
-  class='form-control'>
+  class='form-control'
+  formControlName='title'
+  >
 </div>
 <div class='form-group'>
     <label for='subtitle'>Subtitle</label>
@@ -34,29 +34,27 @@
     type='text'
     id='subtitle'
     name='subtitle'
-    [ngModel] = 'post?.subtitle'
-    #subtitle="ngModel"
-    class='form-control'>
+    class='form-control'
+    formControlName='subtitle'>
 </div>
 <div class='form-group'>
     <label for='content'>Content</label>
     <textarea rows='12'
-    [ngModel]='post?.content'
-    #content='ngModel'
     class='form-control'
     id='content'
-    name='content'></textarea>
+    name='content'
+    formControlName='content'></textarea>
 </div>
 </div>
 <div class='col-4'>
   <div class='form-group'>
       <label for='summary'>140-character summary (SEO, Blurbs etc..)</label>
       <textarea rows='6'
-      [ngModel]='post?.summary'
-      #summary='ngModel'
       class='form-control'
       id='summary'
-      name='summary'></textarea>
+      name='summary'
+      formControlName='summary'
+      ></textarea>
   </div>
   <div class='form-group'>
       <label for='password'>Add Photo</label>
