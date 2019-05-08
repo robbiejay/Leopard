@@ -5,6 +5,7 @@ const postSchema = mongoose.Schema({
   subtitle: { type: String, required: true },
   content: { type: String, required: true },
   summary:  { type: String, required: true },
+  imagePath: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Post', postSchema);

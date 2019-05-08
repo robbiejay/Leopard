@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BlogService } from '../../_services/blog.service';
 import { Post } from '../../_models/post.model';
+import { mimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-admin-new-post',
@@ -15,6 +16,8 @@ export class AdminNewPostComponent implements OnInit {
   isLoading = false;
 
   form: FormGroup;
+  imagePreview: string;
+
 
   private mode = 'create';
   private postId: string;
@@ -27,27 +30,36 @@ export class AdminNewPostComponent implements OnInit {
   ngOnInit() {
 
     this.form = new FormGroup({
-      'title': new FormControl(null, {
+      title: new FormControl(null, {
         validators: [
           Validators.required,
           Validators.minLength(3)
         ]
       }),
-      'subtitle': new FormControl(null, {
+      subtitle: new FormControl(null, {
         validators: [
           Validators.required
         ]
       }),
-      'content': new FormControl(null, {
+      content: new FormControl(null, {
         validators: [
           Validators.required
         ]
       }),
-      'summary': new FormControl(null, {
+      summary: new FormControl(null, {
         validators: [
           Validators.required
         ]
       }),
+      image: new FormControl(null, {
+        validators: [
+          Validators.required
+        ],
+        asyncValidators:
+        [
+          mimeType
+        ]
+      })
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -63,13 +75,15 @@ export class AdminNewPostComponent implements OnInit {
             title: postData.title,
             subtitle: postData.subtitle,
             content: postData.content,
-            summary: postData.summary
+            summary: postData.summary,
+            imagePath: postData.imagePath
           };
           this.form.setValue({
-            'title': this.post.title,
-            'subtitle': this.post.subtitle,
-            'content': this.post.content,
-            'summary': this.post.summary
+            title: this.post.title,
+            subtitle: this.post.subtitle,
+            content: this.post.content,
+            summary: this.post.summary,
+            image: this.post.imagePath
           });
         });
 
@@ -80,7 +94,21 @@ export class AdminNewPostComponent implements OnInit {
     });
   }
 
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({image: file});
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = <string>reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   onPostUpload() {
+    if (this.form.invalid) {
+      return;
+    }
     this.isLoading = true;
     if(this.mode === 'create') {
       this.bloggingService.addPost(
@@ -88,7 +116,8 @@ export class AdminNewPostComponent implements OnInit {
         this.form.value.title,
         this.form.value.subtitle,
         this.form.value.content,
-        this.form.value.summary
+        this.form.value.summary,
+        this.form.value.image
 
       );
     } else {
@@ -97,7 +126,8 @@ export class AdminNewPostComponent implements OnInit {
         this.form.value.title,
         this.form.value.subtitle,
         this.form.value.content,
-        this.form.value.summary
+        this.form.value.summary,
+        this.form.value.image
 
       );
     }
