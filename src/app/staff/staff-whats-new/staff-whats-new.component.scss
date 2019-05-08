@@ -1,0 +1,47 @@
+h1 {
+    font-family: 'News Cycle', sans-serif;
+    font-size: 1.777em;
+    font-weight: 700;
+    padding: 7px 14px;
+
+
+}
+
+h2 {
+    font-family: 'News Cycle', sans-serif;
+    padding: 7px 14px;
+    font-size: 1.333em;
+}
+
+h3 {
+    font-family: 'News Cycle', sans-serif;
+    padding: 7px 14px;
+}
+
+p {
+    font-family: 'News Cycle', sans-serif;
+    padding: 7px 14px;
+}
+
+button {
+  padding: 4px 14px;
+  font-family: 'News Cycle', sans-serif;
+  background-color: #f0f0f0;
+  margin-left: 14px;
+  float: right;
+  position: relative;
+  top: -20px;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.post-image {
+  width: 100%;
+}
+
+.post-image img {
+  width: 100%;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
