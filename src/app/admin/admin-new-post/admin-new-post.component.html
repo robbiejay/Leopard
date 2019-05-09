@@ -17,6 +17,13 @@
       <mat-spinner *ngIf="isLoading"></mat-spinner>
 <form [formGroup]="form" (ngSubmit)='onPostUpload(f)' *ngIf="!isLoading" enctype="multipart/form-data">
   <div class='row'>
+    <mat-radio-group aria-label='Select a type of post' formControlName='postType'>
+      <mat-radio-button value='whatsNew' name='postType'>What's New</mat-radio-button>
+      <mat-radio-button value='activities' name='postType'>Activities</mat-radio-button>
+      <mat-radio-button value='payRoll' name='postType'>Payroll</mat-radio-button>
+      </mat-radio-group>
+  </div>
+  <div class='row'>
   <div class='col-8'>
 <div class='form-group'>
   <label for='title'>Title</label>

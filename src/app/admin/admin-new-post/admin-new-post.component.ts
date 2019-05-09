@@ -51,6 +51,11 @@ export class AdminNewPostComponent implements OnInit {
           Validators.required
         ]
       }),
+      postType: new FormControl(null, {
+        validators: [
+          Validators.required
+        ]
+      }),
       image: new FormControl(null, {
         validators: [
           Validators.required
@@ -111,15 +116,16 @@ export class AdminNewPostComponent implements OnInit {
     }
     this.isLoading = true;
     if(this.mode === 'create') {
-      this.bloggingService.addPost(
-
-        this.form.value.title,
-        this.form.value.subtitle,
-        this.form.value.content,
-        this.form.value.summary,
-        this.form.value.image
-
-      );
+        console.log(this.form.value.postType);
+      // this.bloggingService.addPost(
+      //
+      //   this.form.value.title,
+      //   this.form.value.subtitle,
+      //   this.form.value.content,
+      //   this.form.value.summary,
+      //   this.form.value.image
+      //
+      // );
     } else {
       this.bloggingService.updatePost(
         this.postId,

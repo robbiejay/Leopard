@@ -3,7 +3,9 @@ h1 {
     font-size: 1.777em;
     font-weight: 700;
     padding: 7px 14px;
-
+    border-bottom: 1px solid #d0d0d0;
+    padding-bottom: 4px;
+    color: #1e2261;
 
 }
 
@@ -11,16 +13,22 @@ h2 {
     font-family: 'News Cycle', sans-serif;
     padding: 7px 14px;
     font-size: 1.333em;
+    margin-bottom: 7px;
 }
 
 h3 {
     font-family: 'News Cycle', sans-serif;
     padding: 7px 14px;
+    width: 80%;
+    margin-left: 10%;
 }
 
 p {
     font-family: 'News Cycle', sans-serif;
     padding: 7px 14px;
+
+    font-size: 1.1666em;
+    line-height: 1.777em;
 }
 
 button {
@@ -42,6 +50,7 @@ mat-spinner {
 }
 
 .post-image img {
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }

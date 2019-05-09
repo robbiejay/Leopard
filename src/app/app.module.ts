@@ -29,6 +29,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule } from '@angular/material/toolbar';
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatRadioModule } from '@angular/material/radio';
 import { StaffWhatsNewComponent } from './staff/staff-whats-new/staff-whats-new.component';
 import { StaffInsuranceServicesComponent } from './staff/staff-insurance-services/staff-insurance-services.component';
 import { StaffActivitiesComponent } from './staff/staff-activities/staff-activities.component';
@@ -65,6 +66,7 @@ import { StaffContactComponent } from './staff/staff-contact/staff-contact.compo
     MatToolbarModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     NgxSmartModalModule.forRoot()
   ],
   providers: [ NgxSmartModalService,
