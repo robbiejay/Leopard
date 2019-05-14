@@ -4,5 +4,6 @@ export interface Post {
   subtitle: string;
   content: string;
   summary: string;
+  postType: string;
   imagePath: string;
 }

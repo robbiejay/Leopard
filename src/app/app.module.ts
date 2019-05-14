@@ -29,12 +29,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule } from '@angular/material/toolbar';
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatRadioModule } from '@angular/material/radio';
 import { StaffWhatsNewComponent } from './staff/staff-whats-new/staff-whats-new.component';
 import { StaffInsuranceServicesComponent } from './staff/staff-insurance-services/staff-insurance-services.component';
 import { StaffActivitiesComponent } from './staff/staff-activities/staff-activities.component';
 import { StaffPayrollComponent } from './staff/staff-payroll/staff-payroll.component';
 import { StaffContactComponent } from './staff/staff-contact/staff-contact.component';
+import { FilterPipe } from './_pipes/filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,8 @@ import { StaffContactComponent } from './staff/staff-contact/staff-contact.compo
     StaffInsuranceServicesComponent,
     StaffActivitiesComponent,
     StaffPayrollComponent,
-    StaffContactComponent
+    StaffContactComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { StaffContactComponent } from './staff/staff-contact/staff-contact.compo
     MatIconModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatPaginatorModule,
     NgxSmartModalModule.forRoot()
   ],
   providers: [ NgxSmartModalService,

@@ -51,7 +51,7 @@ export class AdminNewPostComponent implements OnInit {
           Validators.required
         ]
       }),
-      postType: new FormControl(null, {
+      postType: new FormControl('1', {
         validators: [
           Validators.required
         ]
@@ -81,6 +81,7 @@ export class AdminNewPostComponent implements OnInit {
             subtitle: postData.subtitle,
             content: postData.content,
             summary: postData.summary,
+            postType: postData.postType,
             imagePath: postData.imagePath
           };
           this.form.setValue({
@@ -88,6 +89,7 @@ export class AdminNewPostComponent implements OnInit {
             subtitle: this.post.subtitle,
             content: this.post.content,
             summary: this.post.summary,
+            postType: this.post.postType,
             image: this.post.imagePath
           });
         });
@@ -116,16 +118,17 @@ export class AdminNewPostComponent implements OnInit {
     }
     this.isLoading = true;
     if(this.mode === 'create') {
-        console.log(this.form.value.postType);
-      // this.bloggingService.addPost(
-      //
-      //   this.form.value.title,
-      //   this.form.value.subtitle,
-      //   this.form.value.content,
-      //   this.form.value.summary,
-      //   this.form.value.image
-      //
-      // );
+      this.bloggingService.addPost(
+
+        this.form.value.title,
+        this.form.value.subtitle,
+        this.form.value.content,
+        this.form.value.summary,
+        this.form.value.postType,
+        this.form.value.image,
+
+
+      );
     } else {
       this.bloggingService.updatePost(
         this.postId,
@@ -133,6 +136,7 @@ export class AdminNewPostComponent implements OnInit {
         this.form.value.subtitle,
         this.form.value.content,
         this.form.value.summary,
+        this.form.value.postType,
         this.form.value.image
 
       );

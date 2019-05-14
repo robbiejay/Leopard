@@ -41,6 +41,7 @@ router.post(
       subtitle: req.body.subtitle,
       content: req.body.content,
       summary: req.body.summary,
+      postType: req.body.postType,
       imagePath: url + "/images/" + req.file.filename
   });
   console.log(post);
@@ -77,6 +78,7 @@ router.put(
     subtitle: req.body.subtitle,
     content: req.body.content,
     summary: req.body.summary,
+    postType: req.body.postType,
     imagePath: imagePath
   });
   console.log(post);
@@ -93,6 +95,26 @@ Post.find().then(documents => {
   });
   });
 });
+
+router.get('/whats-new', (req, res, next) => {
+Post.find({postType: 'whatsNew'}).then(documents => {
+  res.status(200).json({
+    message: 'Posts fetched successfully',
+    posts: documents
+  });
+  });
+});
+
+router.get('/activities', (req, res, next) => {
+Post.find({postType: 'activities'}).then(documents => {
+  res.status(200).json({
+    message: 'Posts fetched successfully',
+    posts: documents
+  });
+  });
+});
+
+
 
 router.get("/:id", (req, res, next) => {
   Post.findById(req.params.id).then(post => {

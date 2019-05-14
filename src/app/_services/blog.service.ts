@@ -26,6 +26,7 @@ getPosts() {
         subtitle: post.subtitle,
         content: post.content,
         summary: post.summary,
+        postType: post.postType,
         id: post._id,
         imagePath: post.imagePath
       };
@@ -38,20 +39,91 @@ getPosts() {
   });
 }
 
+getActivites() {
+  this.http
+  .get<{ message: string; posts: any }>(
+    'http://localhost:3000/api/posts/activities'
+  )
+  .pipe(
+    map(postData => {
+    return postData.posts.map(post => {
+      return {
+        title: post.title,
+        subtitle: post.subtitle,
+        content: post.content,
+        summary: post.summary,
+        postType: post.postType,
+        id: post._id,
+        imagePath: post.imagePath
+      };
+    });
+  })
+)
+  .subscribe(transformedPosts => {
+    this.posts = transformedPosts;
+    this.postsUpdated.next([...this.posts]);
+  });
+}
+
+getWhatsNew() {
+  this.http
+  .get<{ message: string; posts: any }>(
+    'http://localhost:3000/api/posts/whats-new'
+  )
+  .pipe(
+    map(postData => {
+    return postData.posts.map(post => {
+      return {
+        title: post.title,
+        subtitle: post.subtitle,
+        content: post.content,
+        summary: post.summary,
+        postType: post.postType,
+        id: post._id,
+        imagePath: post.imagePath
+      };
+    });
+  })
+)
+  .subscribe(transformedPosts => {
+    this.posts = transformedPosts;
+    this.postsUpdated.next([...this.posts]);
+  });
+}
+
+
+
 getPostUpdateListener() {
   return this.postsUpdated.asObservable();
 }
 
 getPost(id: string) {
-  return this.http.get<{ _id: string, title: string, subtitle: string, content: string, summary: string, imagePath: string}>('http://localhost:3000/api/posts/' + id);
+  return this.http.get<{
+    _id: string,
+    title: string,
+    subtitle: string,
+    content: string,
+    summary: string,
+    postType: string,
+    imagePath: string
+  }>('http://localhost:3000/api/posts/' + id);
 }
 
-addPost(title: string, subtitle: string, content: string, summary: string, image: File ) {
+addPost(
+  title: string,
+  subtitle: string,
+   content: string,
+   summary: string,
+   postType: string,
+   image: File
+ ) {
+
 const postData = new FormData();
 postData.append("title", title);
 postData.append("subtitle", subtitle);
 postData.append("content", content);
 postData.append("summary", summary);
+postData.append("postType", postType);
 postData.append("image", image, title);
 
 // const post: Post = {id: null, title: title, subtitle: subtitle, content: content, summary: summary};
@@ -67,6 +139,7 @@ this.http
     subtitle: subtitle,
     content: content,
     summary: summary,
+    postType: postType,
     imagePath: responseData.post.imagePath
   }
   this.posts.push(post);
@@ -75,7 +148,15 @@ this.http
 });
 }
 
-updatePost(id: string, title: string, subtitle: string, content: string, summary: string, image: File | string ) {
+updatePost(
+  id: string,
+  title: string,
+  subtitle: string,
+  content: string,
+  summary: string,
+  postType: string,
+  image: File | string
+) {
   let postData: Post | FormData;
   if (typeof image === 'object') {
     postData = new FormData();
@@ -84,6 +165,7 @@ updatePost(id: string, title: string, subtitle: string, content: string, summary
     postData.append("subtitle", subtitle);
     postData.append("content", content);
     postData.append("summary", summary);
+    postData.append("postType", postType);
     postData.append("image", image, title);
   } else {
     postData = {
@@ -92,6 +174,7 @@ updatePost(id: string, title: string, subtitle: string, content: string, summary
       subtitle: subtitle,
       content: content,
       summary: summary,
+      postType: postType,
       imagePath: image
     };
 
@@ -107,6 +190,7 @@ updatePost(id: string, title: string, subtitle: string, content: string, summary
         subtitle: subtitle,
         content: content,
         summary: summary,
+        postType: postType,
         imagePath: ""
       }
       updatedPosts[oldPostIndex] = post;

@@ -17,7 +17,7 @@ export class StaffWhatsNewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading = true;
-    this.bloggingService.getPosts();
+    this.bloggingService.getWhatsNew();
     this.postsSubscription = this.bloggingService.getPostUpdateListener().subscribe((posts: Post[]) => {
       this.isLoading = false;
       this.posts = posts;
