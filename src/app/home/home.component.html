@@ -1,4 +1,5 @@
 <app-sign-in></app-sign-in>
+<app-sign-up></app-sign-up>
 <div class='container-fluid'>
     <div class='row'>
       <div class='col-7'>
@@ -8,6 +9,10 @@
 <div class='vcenter'>
 <h1>L E O P A R D &nbsp; W E A L T H</h1>
 <button (click)="NgxSmartModalService.getModal('loginPopup').open()">LOGIN</button>
+</div>
+
+<div class='vcenter'>
+<button (click)="NgxSmartModalService.getModal('signupPopup').open()">SIGNUP</button>
 </div>
 </div>
 </div>
