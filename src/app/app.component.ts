@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,12 @@ import * as firebase from 'firebase';
 })
 export class AppComponent implements OnInit {
 
+constructor(private authService: AuthService) {
+
+}
   ngOnInit() {
-    firebase.initializeApp({
-    apiKey: "AIzaSyB_y26KgbyRzbg7gXltTN8k4wQDJgrPc_w",
-    authDomain: "leopard-wealth.firebaseapp.com"
- })
+  this.authService.autoAuthUser();
+
   }
 
   title = 'leopard-wealth';

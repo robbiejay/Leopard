@@ -4,7 +4,7 @@ import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
@@ -12,6 +12,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { StaffComponent } from './staff/staff.component';
 
 import { AuthService } from './auth/auth.service';
+import { AuthInterceptor } from './auth/auth-interceptor';
 import { BlogService } from './_services/blog.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -75,7 +76,8 @@ import { FilterPipe } from './_pipes/filter.pipe';
   ],
   providers: [ NgxSmartModalService,
                 AuthService,
-                BlogService],
+                BlogService,
+              {  provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

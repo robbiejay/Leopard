@@ -15,11 +15,14 @@ import { StaffActivitiesComponent } from './staff/staff-activities/staff-activit
 import { StaffPayrollComponent } from './staff/staff-payroll/staff-payroll.component';
 import { StaffContactComponent } from './staff/staff-contact/staff-contact.component';
 
+import { AuthGuard } from './auth/auth.guard';
+
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'staff',
     component: StaffComponent,
+    canActivate: [AuthGuard],
     children: [
       {
       path:  'staff-whats-new',
@@ -53,7 +56,8 @@ const appRoutes: Routes = [
 
 @NgModule({
 imports: [RouterModule.forRoot(appRoutes)],
-exports: [RouterModule]
+exports: [RouterModule],
+providers: [AuthGuard]
 })
 export class AppRoutingModule {
 
