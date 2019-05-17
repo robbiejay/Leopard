@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminNewPostComponent } from './admin/admin-new-post/admin-new-post.component';
 import { AdminPostListComponent } from './admin/admin-post-list/admin-post-list.component';
+import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 
@@ -49,9 +50,10 @@ const appRoutes: Routes = [
     { path: 'admin', component: AdminComponent },
     { path: 'signup', component: SignUpComponent },
     { path: 'signin', component: SignInComponent },
-    { path: 'admin-new-post', component: AdminNewPostComponent },
-    { path: 'edit/:postId', component: AdminNewPostComponent },
-    { path: 'admin-post-list', component: AdminPostListComponent }
+    { path: 'admin/admin-new-post', component: AdminNewPostComponent },
+    { path: 'admin/edit/:postId', component: AdminNewPostComponent },
+    { path: 'admin/admin-post-list', component: AdminPostListComponent },
+    { path: 'admin/admin-user-list', component: AdminUserListComponent }
 ];
 
 @NgModule({

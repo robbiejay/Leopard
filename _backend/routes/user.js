@@ -67,4 +67,13 @@ router.post('/signin', (req, res, next) => {
     });
 });
 
+router.get('', (req, res, next) => {
+  User.find().then(profiles => {
+    res.status(200).json({
+      message: 'Users fetched successfully',
+      users: profiles
+    });
+  });
+});
+
 module.exports = router;

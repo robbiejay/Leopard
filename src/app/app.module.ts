@@ -38,6 +38,7 @@ import { StaffActivitiesComponent } from './staff/staff-activities/staff-activit
 import { StaffPayrollComponent } from './staff/staff-payroll/staff-payroll.component';
 import { StaffContactComponent } from './staff/staff-contact/staff-contact.component';
 import { FilterPipe } from './_pipes/filter.pipe';
+import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,8 @@ import { FilterPipe } from './_pipes/filter.pipe';
     StaffActivitiesComponent,
     StaffPayrollComponent,
     StaffContactComponent,
-    FilterPipe
+    FilterPipe,
+    AdminUserListComponent
   ],
   imports: [
     BrowserModule,

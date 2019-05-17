@@ -1,0 +1,18 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='user-card' multi='true' *ngFor='let user of users'>
+        <div class='row'>
+          <div class='col-3'>
+            <p><i class="far fa-user"></i></p>
+          </div>
+          <div class='col-9'>
+            <h1>{{ user.email }}</h1>
+            <h2>Family Name</h2>
+            <button class='btn primary'>Edit Payroll</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
